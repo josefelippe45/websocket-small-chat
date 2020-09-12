@@ -8,12 +8,16 @@ const WSS = new WebSocketServer({ port: port });
 WSS.on('connection', (ws) => {
     //ws is our client. listening for a message. NOTE- the first parameter 'message' is build-in
     ws.on('message', (message) => {
-        //access an array of all clients to make it possible to broadcast.
-        //pull each individual client
-        WSS.clients.forEach((client)=>{
-            //send the data back to all users connected 'broadcasting'.
-            client.send(message);
-        });
+        if (message == 'close') {
+            ws.close();
+        } else {
+            //access an array of all clients to make it possible to broadcast.
+            //pull each individual client
+            WSS.clients.forEach((client) => {
+                //send the data back to all users connected 'broadcasting'.
+                client.send(message);
+            });
+        }
         //handle the message
         console.log(message);
     })
