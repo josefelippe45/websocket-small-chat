@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
+    <!--stop the form from refreshing the page, for example: when the user click the button the page doesn't refresh-->
+    <form action="javascript:void(0)">
+        <label for="message">Message</label>
+        <input type="text" id="message">
+        <button type="submit">Submit</button>
+    </form>
 <script src="../services/websocket-client.js"></script>
 </body>
 </html>
